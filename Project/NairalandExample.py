@@ -2,7 +2,7 @@
 # @Author:  Aigboje Ohiorenua
 # @Date:  2022-05-28 02:54:04
 # @Last Modified by:   Your name
-# @Last Modified time: 2022-05-28 03:18:20
+# @Last Modified time: 2022-05-28 16:22:48
 #
 #           ____                      ,
 #          /---.'.__             ____//
@@ -34,7 +34,23 @@ beautiful_soup = BeautifulSoup(page, "lxml")
 
 links = beautiful_soup.find_all("a")
 urls = []
-for link in links:
-    print(link)
-    # for atag in beautiful_soup.find_all("a"):
+# with open("data.csv" , 'w', encoding="utf-8") as csv_file:
+#     for link in links:
+#         csv_file.write(str(link)+"\n")
+
+# with open("data.csv" , 'r', encoding="utf-8") as csv_file:
+    # for link in csv_file:
+    #     print(link)
+
+with open("data.csv" , 'w', encoding="utf-8") as csv_file:
+    for link in links:
+        try:
+            urls.append(link.attrs["href"])
+        except:
+            # print(link)n
+            csv_file.write(str(link)+"\n")
+            continue
+print(urls)
+
+
    
